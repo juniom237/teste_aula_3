@@ -1,15 +1,18 @@
 name: Deploy para Vercel
+
 on:
-push:
-branches:
-- main # ou a branch que deseja monitorar
+  push:
+    branches:
+      - master # ou a branch que deseja monitorar
+
 jobs:
-deploy:
-runs-on: ubuntu-latest
-steps:
-- name: Checkout do código
-uses: actions/checkout@v4
-- name: Instalar o Vercel CLI
-run: npm install --global vercel
-- name: Deploy para a Vercel
-run: vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+      
+      - name: Instalar o Vercel CLI
+        run: npm install --global vercel
+      - name: Deploy para a Vercel
+        run: vercel --prod --yes --token ${{ secrets.VERCEL_TOKEN }}
